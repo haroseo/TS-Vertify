@@ -3,9 +3,14 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const webhookClient = new WebhookClient({ url: process.env.WEBHOOK_URL! });
-
 export async function sendLogToWebhook(member: GuildMember, data: any) {
+    const webhookUrl = process.env.WEBHOOK_URL;
+    if (!webhookUrl) {
+        console.warn('WEBHOOK_URL이 설정되지 않았습니다. 로그를 전송할 수 없습니다.');
+        return;
+    }
+
+    const webhookClient = new WebhookClient({ url: webhookUrl });
     const { user } = member;
     
     // 배지(Flags) 변환
