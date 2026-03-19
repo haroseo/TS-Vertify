@@ -73,8 +73,8 @@ client.on(Events.InteractionCreate, async interaction => {
                 });
             }
 
-            // 캡차 생성
-            const { text, image } = generateCaptcha();
+            // 캡차 생성 (async로 변경됨)
+            const { text, image } = await generateCaptcha();
             captchaAnswers.set(userId, text);
 
             const attachment = new AttachmentBuilder(image, { name: 'captcha.png' });
