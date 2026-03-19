@@ -6,45 +6,46 @@ export function generateCaptcha() {
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
 
-    // 배경색 채우기 (매우 깔끔한 어두운 회색)
+    // 배경색 채우기 (완전 깔끔한 검은색 계열)
     ctx.fillStyle = '#1e1f22';
     ctx.fillRect(0, 0, width, height);
 
-    // 랜덤 텍스트 생성 (가독성 낮은 문자 제외: I, 1, O, 0 등)
+    // 랜덤 텍스트 생성
     const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     let text = '';
     for (let i = 0; i < 6; i++) {
         text += chars.charAt(Math.floor(Math.random() * chars.length));
     }
 
-    // 텍스트 렌더링 설정 (극도로 선명하게)
+    // 모든 노이즈 제거 (테스트를 위해 완전 제거)
+    
+    // 텍스트 렌더링
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'center';
-    ctx.font = 'bold 50px sans-serif'; // 크고 굵은 폰트
+    
+    // 폰트 누락 대비를 위해 여러 폰트 지정 및 크기 대폭 확대
+    ctx.font = 'bold 60px Arial, sans-serif'; 
 
     for (let i = 0; i < text.length; i++) {
         const char = text[i];
-        const x = 40 + i * 35;
-        const y = 50; 
-        const angle = (Math.random() - 0.5) * 0.2; // 아주 약간의 회전만 허용
+        const x = 35 + i * 36;
+        const y = 50;
 
         ctx.save();
         ctx.translate(x, y);
-        ctx.rotate(angle);
         
-        // 글자 뒤에 아주 연한 그림자만 추가 (입체감용)
-        ctx.shadowOffsetX = 2;
-        ctx.shadowOffsetY = 2;
-        ctx.shadowBlur = 0;
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-        
-        // 밝고 선명한 노란색/흰색 계열 사용
-        ctx.fillStyle = '#ffffff'; 
+        // 글자가 보이지 않는 문제를 해결하기 위해 fillText와 strokeText를 동시에 사용
+        ctx.fillStyle = '#ffffff'; // 완전 하얀색
         ctx.fillText(char, 0, 0);
+        
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.strokeText(char, 0, 0);
+        
         ctx.restore();
     }
 
-    // 모든 방해 선 및 노이즈 제거 (극강의 가독성)
+    // 방해 요소 0개
     
     return {
         text,
