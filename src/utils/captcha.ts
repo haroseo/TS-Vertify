@@ -6,7 +6,7 @@ export async function generateCaptcha() {
     // svg-captcha는 내부적으로 텍스트를 경로(path)로 변환하므로 시스템 폰트가 필요 없음
     const captcha = svgCaptcha.create({
         size: 6,
-        noise: 6, // 노이즈 라인 수 증가
+        noise: 15, // 노이즈 라인 수를 대폭 늘림 (강력한 보안)
         color: true,
         background: '#1e1f22',
         width: 250,
