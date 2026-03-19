@@ -23,8 +23,8 @@ export function generateCaptcha() {
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'center';
     
-    // 폰트 누락 대비를 위해 여러 폰트 지정 및 크기 대폭 확대
-    ctx.font = 'bold 60px Arial, sans-serif'; 
+    // 폰트 설정 (nixpacks로 설치할 DejaVu Sans 사용)
+    ctx.font = 'bold 60px "DejaVu Sans", Arial, sans-serif'; 
 
     for (let i = 0; i < text.length; i++) {
         const char = text[i];
