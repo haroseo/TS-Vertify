@@ -1,2 +1,2 @@
 [phases.setup]
-nixPkgs = ["nodejs", "python3", "pkg-config", "build-essential", "pixman", "cairo", "pango", "giflib", "libjpeg", "fontconfig", "dejavu_fonts"]
+nixPkgs = ["nodejs", "python3", "pkg-config", "build-essential", "pixman", "cairo", "pango", "giflib", "libjpeg", "fontconfig", "dejavu-fonts", "freefont-ttf", "liberation-fonts"]
